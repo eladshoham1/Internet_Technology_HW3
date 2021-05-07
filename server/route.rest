@@ -1,0 +1,29 @@
+GET http://localhost:8000/places
+
+###
+
+GET http://localhost:8000/places/15
+
+###
+
+POST http://localhost:8000/places
+Content-Type: application/json
+
+{
+    "name": "Sea",
+    "location": "Israel",
+    "description": "yes yes"
+}
+
+###
+
+DELETE http://localhost:8000/places/15
+
+###
+
+PATCH http://localhost:8000/places/15
+Content-Type: application/json
+
+{
+    "name": "new place"
+}
