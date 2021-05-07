@@ -1,0 +1,44 @@
+body {
+	font-size: 22px;
+	padding-right: 50px;
+	padding-left: 50px;
+}
+
+h1, h2 {
+	color: teal;
+}
+
+p {
+	font-size: 22px;
+}
+
+u {
+	font-size: 22px;
+	color: teal;
+}
+
+.copyright {
+	font-size: 14px;
+	color: teal;
+}
+
+.img_sites {
+	margin: 50px 100px;
+	height: 250;
+	width: 400;
+}
+
+a:link, a:visited {
+  background-color: white;
+  color: teal;
+  border: 2px solid teal;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: teal;
+  color: white;
+}
