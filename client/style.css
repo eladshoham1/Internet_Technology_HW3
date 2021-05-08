@@ -1,10 +1,11 @@
 body {
 	padding: 12px;
-	font-size: 18px;
-	color: teal;
+	font-size: 20px;
+	color: black;
 }
 
 h1, h2 {
+	text-align: center;
 	color: teal;
 }
 
@@ -14,24 +15,13 @@ h1, h2 {
 	width: 400;
 }
 
-a:link, a:visited {
-  	color: teal;
-  	text-decoration: none;
+.placeLink {
+	color: teal;
+	text-decoration: none;
 }
 
-a:hover, a:active {
+.placeLink:hover {
 	color: #00BFFF;
-  	text-decoration: none;
-}
-
-table {
-	width: 100%;
-}
-
-td {
-	padding: 12px;
-	vertical-align: top;
-	text-align: center;
 }
 
 * {
@@ -69,4 +59,80 @@ input[type=submit]:hover {
 	background-color: white;
 	color: teal;
 	border: 2px solid teal;
+}
+
+table {
+	border: 5px solid teal;
+	border-collapse: collapse;
+	border-spacing: 10px;
+	width: 100%;
+}
+
+th {
+	border: 3px solid teal;
+	padding: 12px;
+	vertical-align: top;
+	text-align: center;
+}
+
+td {
+	border: 3px solid teal;
+	padding: 12px;
+	vertical-align: top;
+	text-align: center;
+}
+
+.likeButton {
+	background-color: teal;
+	color: white;
+	border: 2px solid white;
+	border-radius: 8px;
+	padding: 12px 20px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	display: inline-block;
+	float: right;
+}
+
+.likeButton:hover {
+	background-color: white;
+	color: teal;
+	border: 2px solid teal;
+}
+
+.indexButton {
+	background-color: teal;
+	color: white;
+	border: 2px solid white;
+	border-radius: 8px;
+	padding: 12px 20px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.indexButton:hover {
+	background-color: white;
+	color: teal;
+	border: 2px solid teal;
+}
+
+.deletePlaceButton {
+	background-color: red;
+	color: white;
+	border: 2px solid white;
+	border-radius: 8px;
+	padding: 12px 20px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.deletePlaceButton:hover {
+	background-color: white;
+	color: teal;
+	border: 2px solid red;
 }

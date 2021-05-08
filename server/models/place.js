@@ -18,7 +18,7 @@ const placeSchema = new mongoose.Schema({
         default: 0
     },
     images: [{
-        url: String
+        fileName: String
     }]
 });
 

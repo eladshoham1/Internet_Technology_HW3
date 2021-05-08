@@ -6,19 +6,8 @@ function renderPlaces() {
     });
 }
 
-function renderPlace() {
-    const url = document.URL;
-    const id = url.substring(url.indexOf('=') + 1);
-   
-    fetch('http://localhost:8080/places/' + id).then(result => {
-        return result.json();
-    }).then(data => {
-        showPlace(data);
-    });
-}
-
 function makeTable(placesData) {
-    var places = "<table border='1'>";
+    var places = "<table>";
     places += "<thead><tr>";
     places += "<th>Name</th>";
     places += "<th>Country</th>";
@@ -28,7 +17,7 @@ function makeTable(placesData) {
     places += "<tbody>";
     for (var i = 0; i < placesData.length; i++) {
         places += "<tr>";
-        places += "<td><a href='../client/place.html?id=" + placesData[i]._id + "'>" + placesData[i].name + "</a></td>";
+        places += "<td><a class='placeLink' href='../client/place.html?id=" + placesData[i]._id + "'>" + placesData[i].name + "</a></td>";
         places += "<td>" + placesData[i].country + "</td>";
         places += "<td>" + placesData[i].likes + "</td>";
         places += "</tr>";
@@ -39,10 +28,25 @@ function makeTable(placesData) {
     document.getElementById('places').innerHTML = places;
 }
 
-function showPlace(place) {
-    document.getElementById('title').innerHTML = place.name;
-    document.getElementById('header').innerHTML = place.name;
-    document.getElementById('name').innerHTML = place.name;
-    document.getElementById('country').innerHTML = place.country;
-    document.getElementById('description').innerHTML = place.description;
+function validateForm() {
+    var name = document.forms["addPlaceForm"]["name"].value;
+    var images = document.forms["addPlaceForm"]["images"].value;
+    var description = document.forms["addPlaceForm"]["description"].value;
+
+    if (name == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+
+    if (images.length < 2) {
+        alert("You must choose at least 2 images");
+        return false;
+    }
+
+    if (description == "") {
+        alert("Description must be filled out");
+        return false;
+    }
+
+    return true;
 }

@@ -19,10 +19,16 @@ router.get('/:id', getPlace, (req, res) => {
 
 // Creating one
 router.post('/', async (req, res) => {
+    const { name, country, description, images } = req.body;
+
+    for (var i = 0; i < images.length; i++)
+        images[i] = { fileName: images[i] };
+
     const place = new Place({
-        name: req.body.name,
-        country: req.body.country,
-        description: req.body.description
+        name,
+        country,
+        description,
+        images
     });
 
     try {
@@ -35,22 +41,11 @@ router.post('/', async (req, res) => {
 
 // Updating one
 router.patch('/:id', getPlace, async (req, res) => {
-    if (req.body.name != null) {
-        res.place.name = req.body.name;
-    }
-    if (req.body.location != null) {
-        res.place.location = req.body.location;
-    }
-    if (req.body.description != null) {
-        res.place.description = req.body.description;
-    }
-    if (req.body.likes != null) {
-        res.place.likes = res.place.likes + 1;
-    }
+    res.place.likes += 1;
 
     try {
         const updatedPlace = await res.place.save();
-        res.json(updatedPlace);
+        res.json(updatedPlace.likes);
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
