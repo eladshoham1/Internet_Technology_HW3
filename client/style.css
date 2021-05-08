@@ -1,24 +1,10 @@
 body {
-	font-size: 22px;
-	padding-right: 50px;
-	padding-left: 50px;
+	padding: 12px;
+	font-size: 18px;
+	color: teal;
 }
 
 h1, h2 {
-	color: teal;
-}
-
-p {
-	font-size: 22px;
-}
-
-u {
-	font-size: 22px;
-	color: teal;
-}
-
-.copyright {
-	font-size: 14px;
 	color: teal;
 }
 
@@ -29,16 +15,58 @@ u {
 }
 
 a:link, a:visited {
-  background-color: white;
-  color: teal;
-  border: 2px solid teal;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+  	color: teal;
+  	text-decoration: none;
 }
 
 a:hover, a:active {
-  background-color: teal;
-  color: white;
+	color: #00BFFF;
+  	text-decoration: none;
+}
+
+table {
+	width: 100%;
+}
+
+td {
+	padding: 12px;
+	vertical-align: top;
+	text-align: center;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+input[type=text],
+select,
+textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	resize: vertical;
+}
+
+label {
+	padding: 12px 12px 12px 0;
+	display: inline-block;
+}
+
+input[type=submit] {
+	background-color: teal;
+	color: white;
+	border: 2px solid white;
+	border-radius: 8px;
+	padding: 12px 20px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	display: inline-block;
+}
+
+input[type=submit]:hover {
+	background-color: white;
+	color: teal;
+	border: 2px solid teal;
 }

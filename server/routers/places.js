@@ -5,7 +5,7 @@ const Place = require('../models/place');
 // Getting all
 router.get('/', async (req, res) => {
     try {
-        const places = await Place.find();
+        const places = await Place.find().sort({ likes: -1 });
         res.json(places);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -21,13 +21,13 @@ router.get('/:id', getPlace, (req, res) => {
 router.post('/', async (req, res) => {
     const place = new Place({
         name: req.body.name,
-        location: req.body.location,
+        country: req.body.country,
         description: req.body.description
     });
 
     try {
-        const newPlace = await place.save();
-        res.status(201).json(newPlace);
+        await place.save();
+        res.redirect('http://127.0.0.1:5500/client/index.html');
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
@@ -43,6 +43,9 @@ router.patch('/:id', getPlace, async (req, res) => {
     }
     if (req.body.description != null) {
         res.place.description = req.body.description;
+    }
+    if (req.body.likes != null) {
+        res.place.likes = res.place.likes + 1;
     }
 
     try {

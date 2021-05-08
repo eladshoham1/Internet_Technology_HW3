@@ -5,14 +5,21 @@ const placeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    location: {
+    country: {
         type: String,
         required: true
     },
     description: {
         type: String,
         required: true
-    }
+    },
+    likes: {
+        type: Number,
+        default: 0
+    },
+    images: [{
+        url: String
+    }]
 });
 
 module.exports = mongoose.model('Place', placeSchema);

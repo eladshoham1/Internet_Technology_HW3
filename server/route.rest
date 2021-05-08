@@ -1,12 +1,12 @@
-GET http://localhost:8000/places
+GET http://localhost:8080/places
 
 ###
 
-GET http://localhost:8000/places/15
+GET http://localhost:8080/places/60958d6383943512bcab5343
 
 ###
 
-POST http://localhost:8000/places
+POST http://localhost:8080/places
 Content-Type: application/json
 
 {
@@ -17,11 +17,11 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:8000/places/15
+DELETE http://localhost:8080/places/60958d6383943512bcab5343
 
 ###
 
-PATCH http://localhost:8000/places/15
+PATCH http://localhost:8080/places/60958d6383943512bcab5343
 Content-Type: application/json
 
 {

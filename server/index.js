@@ -1,6 +1,8 @@
 require('dotenv').config();
 
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
 
@@ -12,9 +14,12 @@ const db = mongoose.connection;
 db.on('error', error => console.log(error));
 db.once('open', () => console.log('Connected to Database'));
 
+app.use(cors());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.json());
 
 const placesRouter = require('./routers/places');
 app.use('/places', placesRouter);
 
-app.listen(8000, () => console.log('Server Started'));
+const port = process.env.PORT || 8080;
+app.listen(port, () => console.log('Server Started'));
