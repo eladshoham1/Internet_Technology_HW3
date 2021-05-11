@@ -1,17 +1,5 @@
 var place;
 
-function renderPlace() {
-    const url = document.URL;
-    const id = url.substring(url.indexOf('=') + 1);
-   
-    fetch('http://localhost:8080/places/' + id).then(result => {
-        return result.json();
-    }).then(data => {
-        place = data;
-        showPlace(data);
-    });
-}
-
 function showPlace() {
     var content = "<h1>" + place.name + "</h1>";
     content += "<table>";
@@ -73,3 +61,13 @@ function deletePlace() {
         window.location.href = "index.html";
     });
 }
+
+$(() => {
+    const url = document.URL;
+    const id = url.substring(url.indexOf('=') + 1);
+
+    $.get('http://localhost:8080/places/' + id , data => {
+        place = data;
+        showPlace(data);
+    });
+});

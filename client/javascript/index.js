@@ -1,10 +1,4 @@
-function renderPlaces() {
-    fetch('http://localhost:8080/places').then(result => {
-        return result.json();
-    }).then(data => {
-        makeTable(data);
-    });
-}
+//import { APIRootPath } from '../../configuration';
 
 function makeTable(placesData) {
     var places = "<table>";
@@ -23,7 +17,7 @@ function makeTable(placesData) {
         places += "</tr>";
     }
     places += "</tbody>";
-
+    
     places += "</table>";
     document.getElementById('places').innerHTML = places;
 }
@@ -50,3 +44,9 @@ function validateForm() {
 
     return true;
 }
+
+$(() => {
+    $.get('http://localhost:8080/places', data => {
+        makeTable(data);
+    });
+});
