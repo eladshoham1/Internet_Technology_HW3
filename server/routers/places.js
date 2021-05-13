@@ -20,16 +20,15 @@ router.get('/:id', getPlace, (req, res) => {
 // Creating one
 router.post('/', async (req, res) => {
     const { name, country, description, images } = req.body;
-
-    for (var i = 0; i < images.length; i++)
-        images[i] = { fileName: images[i] };
-
-    const place = new Place({
+    var place = new Place({
         name,
         country,
-        description,
-        images
+        description
     });
+
+    if (images !== "") {
+        place.images = images;
+    }
 
     try {
         await place.save();

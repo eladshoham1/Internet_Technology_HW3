@@ -17,9 +17,7 @@ const placeSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    images: [{
-        fileName: String
-    }]
+    images: [String]
 });
 
 module.exports = mongoose.model('Place', placeSchema);

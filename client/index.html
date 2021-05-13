@@ -23,6 +23,7 @@
 					<input type="text" id="name" name="name" placeholder="Enter name"><br>
 					<label for="country">Country</label><br>
 					<select id="country" name="country">
+						<option value=""></option>
 						<option value="Afghanistan">Afghanistan</option>
 						<option value="Åland Islands">Åland Islands</option>
 						<option value="Albania">Albania</option>
@@ -191,7 +192,6 @@
 						<option value="Oman">Oman</option>
 						<option value="Pakistan">Pakistan</option>
 						<option value="Palau">Palau</option>
-						<option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
 						<option value="Panama">Panama</option>
 						<option value="Papua New Guinea">Papua New Guinea</option>
 						<option value="Paraguay">Paraguay</option>
@@ -272,7 +272,7 @@
   					<input type="file" id="images" name="images" accept="image/*" multiple>
 					<label for="description">Description</label><br>
 					<textarea id="description" name="description" placeholder="Write an description.." style="height:200px"></textarea><p>
-					<input type="submit" value="Add Place">
+					<input type="submit" id="submit" value="Add Place">
 				</form>
 			</td>
 		</tr>
