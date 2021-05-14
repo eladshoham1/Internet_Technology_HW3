@@ -1,7 +1,10 @@
 body {
+	background-image: url("../images/world.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
 	padding: 12px;
-	font-size: 20px;
-	color: black;
 }
 
 h1, h2 {
@@ -11,12 +14,12 @@ h1, h2 {
 
 .img_sites {
 	margin: 20px 40px;
-	height: 250px;
+	height: 200px;
 	width: 300px;
 }
 
 .placeLink {
-	color: teal;
+	color: white;
 	text-decoration: none;
 }
 
@@ -66,6 +69,8 @@ table {
 	border-collapse: collapse;
 	border-spacing: 10px;
 	width: 100%;
+	font-size: 20px;
+	text-shadow: 2px 2px 4px #003cff;
 }
 
 th {
@@ -82,31 +87,16 @@ td {
 	text-align: center;
 }
 
-.likeButton {
+.indexButton, 
+.likeButton, 
+.deleteButton {
 	background-color: teal;
 	color: white;
 	border: 2px solid white;
 	border-radius: 8px;
-	padding: 12px 20px;
-	text-align: center;
-	text-decoration: none;
-	cursor: pointer;
-	display: inline-block;
-	float: right;
-}
-
-.likeButton:hover {
-	background-color: white;
-	color: teal;
-	border: 2px solid teal;
-}
-
-.indexButton {
-	background-color: teal;
-	color: white;
-	border: 2px solid white;
-	border-radius: 8px;
-	padding: 12px 20px;
+	margin: 14px;
+	padding: 10px 16px;
+	font-size: 15px;
 	text-align: center;
 	text-decoration: none;
 	cursor: pointer;
@@ -119,20 +109,43 @@ td {
 	border: 2px solid teal;
 }
 
-.deletePlaceButton {
+.likeButton,
+.deleteButton {
+	float: right;
+}
+
+.likeButton {
+	background-color: #FFD700;
+	color: white;
+	border: 2px solid white;
+}
+
+.likeButton:hover {
+	background-color: white;
+	color: #FFD700;
+	border: 2px solid #FFD700;
+}
+
+.deleteButton {
 	background-color: red;
 	color: white;
 	border: 2px solid white;
-	border-radius: 8px;
-	padding: 12px 20px;
-	text-align: center;
-	text-decoration: none;
-	cursor: pointer;
-	display: inline-block;
 }
 
-.deletePlaceButton:hover {
+.deleteButton:hover {
 	background-color: white;
-	color: teal;
+	color: red;
 	border: 2px solid red;
+}
+
+label.error.fail-alert {
+	border: 2px solid red;
+	border-radius: 4px;
+	line-height: 1;
+	margin-top: 5px;
+	padding: 3px;
+	background: #e23552;
+	font-size: 16px;
+	color: black;
+	text-shadow: none;
 }

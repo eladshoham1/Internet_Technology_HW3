@@ -6,12 +6,18 @@ function showPlace() {
     content += "<tr height='60px'>";
     content += "<td width='20%'>Place Name</td>";
     content += "<td width='60%' style='text-align: left;'>" + place.name + "</td>";
-    content += "<td rowspan='4' width='20%'>";
-    content += "<marquee direction='up' height='400px'>";
-    for (var i = 0; i < place.images.length; i++)
-        content += "<img src='./images/" + place.images[i] + "' class='img_sites' />";
-    content += "</marquee>";
-    content += "</td>";
+    
+    if (place.images.length !== 0) {
+        content += "<td rowspan='4' width='20%'>";
+        content += "<marquee direction='up' height='400px'>";
+
+        for (var i = 0; i < place.images.length; i++)
+            content += "<img src='./images/" + place.images[i] + "' class='img_sites' />";
+
+        content += "</marquee>";
+        content += "</td>";
+    }
+    
     content += "</tr>";
     content += "<tr height='60px'>";
     content += "<td>Country</td>";
@@ -39,6 +45,10 @@ $(() => {
         place = data;
         showPlace(data);
     });
+});
+
+$('#backToIndex').click(() => {
+    window.location.href = "index.html";
 });
 
 $('#likePlace').click(() => {
