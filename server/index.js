@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
+const Place = require('./models/place');
+const fs = require('fs');
 
 mongoose.connect(process.env.DATABASE_URL, {
      useNewUrlParser: true,
@@ -12,7 +14,18 @@ mongoose.connect(process.env.DATABASE_URL, {
 });
 const db = mongoose.connection;
 db.on('error', error => console.log(error));
-db.once('open', () => console.log('Connected to Database'));
+db.once('open', async () => {
+     console.log('Connected to Database');
+     const placesCount = await Place.countDocuments().exec();
+
+     if (placesCount === 0) {
+          fs.readFile('./places.json', 'utf8', async (err, data) => {
+               const places = JSON.parse(data);
+               await Place.insertMany(places);
+               console.log('places file import into mongoDB');
+          })
+     }
+});
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
