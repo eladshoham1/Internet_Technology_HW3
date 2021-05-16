@@ -258,8 +258,11 @@ function countriesOptions() {
 }
 
 $(() => {
+    const url = document.URL;
+    const page = url.includes('=') ? url.substring(url.indexOf('=') + 1) : 1;
+    
     countriesOptions();
-
+    
     $("#addPlaceForm").validate({
         errorClass: "error fail-alert",
         messages: {
@@ -268,38 +271,48 @@ $(() => {
             description: "Please enter description",
         },
         rules: {
-          name: "required",
-          country: "required",
-          description: "required"
+            name: "required",
+            country: "required",
+            description: "required"
         },
     });
 
-    $.get('http://localhost:8080/places', data => {
-        var places = "";
-
-        if (data.length !== 0) {
-            places = "<table>";
-            places += "<thead><tr>";
-            places += "<th>Name</th>";
-            places += "<th>Country</th>";
-            places += "<th>Likes</th>";
-            places += "</tr></thead>";
-    
-            places += "<tbody>";
-            for (var i = 0; i < data.length; i++) {
-                places += "<tr>";
-                places += "<td><a class='placeLink' href='../client/place.html?id=" + data[i]._id + "'>" + data[i].name + "</a></td>";
-                places += "<td>" + data[i].country + "</td>";
-                places += "<td>" + data[i].likes + "</td>";
-                places += "</tr>";
-            }
-            places += "</tbody>";
-            
-            places += "</table>";
-        } else {
-            places += "<h2>There is no places right now</h2>";
-        }
-        
-        document.getElementById('places').innerHTML = places;
+    $.get('http://localhost:8080/places?page=' + page, data => {
+        renderPlaces(data);
     });
 });
+
+function renderPlaces(data) {
+    var { current, previous, next } = data;
+    var buttons = "";
+    
+    if (current.length !== 0) {
+        var placesTable = `
+            <table>
+                <tr>
+                    <th width='33%'>Name</th>
+                    <th width='33%'>Country</th>
+                    <th width='33%'>Likes</th>
+                </tr>`;
+
+        current.map(place => {
+            placesTable += `
+                <tr>
+                    <td><a class='placeLink' href='../client/place.html?id=${ place._id }'>${ place.name }</a></td>
+                    <td>${ place.country }</td>
+                    <td>${ place.likes }</td>
+                </tr>
+            `;
+        })
+
+        placesTable += `</table>`;
+    } else {
+        placesTable += `<h2>There is no places right now</h2>`;
+    }
+
+    buttons = previous ? `<a href='index.html?page=${previous}' class='previousPageButton'>Previous</a>` : "";
+    buttons += next ? `<a href='index.html?page=${next}' class='nextPageButton'>Next</a>` : "";
+    
+    document.getElementById('places').innerHTML = placesTable;
+    document.getElementById('paginationButtons').innerHTML = buttons;
+}

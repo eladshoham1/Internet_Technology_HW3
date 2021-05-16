@@ -2,22 +2,17 @@ const express = require('express');
 const router = express.Router();
 const Place = require('../models/place');
 
-// Getting all
-router.get('/', async (req, res) => {
-    try {
-        const places = await Place.find().sort({ likes: -1 });
-        res.json(places);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+// Getting all places by pages
+router.get('/', paginatedResults(Place), async (req, res) => {
+    res.json(res.paginatedResults);
 });
 
-// Getting One
+// Getting place
 router.get('/:id', getPlace, (req, res) => {
     res.json(res.place);
 });
 
-// Creating one
+// Creating place
 router.post('/', async (req, res) => {
     const { name, country, description, images } = req.body;
     var place = new Place({
@@ -38,7 +33,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Updating one
+// Updating place likes
 router.patch('/:id', getPlace, async (req, res) => {
     res.place.likes += 1;
 
@@ -50,7 +45,7 @@ router.patch('/:id', getPlace, async (req, res) => {
     }
 });
 
-// Deleting one
+// Deleting place
 router.delete('/:id', getPlace, async (req, res) => {
     try {
         await res.place.remove();
@@ -73,6 +68,34 @@ async function getPlace(req, res, next) {
 
     res.place = place;
     next();
+}
+
+function paginatedResults(model) {
+    return async (req, res, next) => {
+        const page = parseInt(req.query.page);
+        const limit = 10;
+        
+        const startIndex = (page - 1) * limit;
+        const endIndex = page * limit;
+        
+        const results = {};
+
+        if (startIndex > 0) {
+            results.previous = page - 1;
+        }
+        
+        if (endIndex < await model.countDocuments().exec()) {
+            results.next = page + 1;
+        }
+    
+        try {
+            results.current = await model.find().sort({ likes: -1 }).limit(limit).skip(startIndex);
+            res.paginatedResults = results;
+            next();
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+        }
+    }
 }
 
 module.exports = router;

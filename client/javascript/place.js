@@ -39,12 +39,18 @@ function showPlace() {
 
 $(() => {
     const url = document.URL;
-    const id = url.substring(url.indexOf('=') + 1);
-
-    $.get('http://localhost:8080/places/' + id , data => {
-        place = data;
-        showPlace(data);
-    });
+    
+    if (url.includes('=')) {
+        const id = url.substring(url.indexOf('=') + 1);
+    
+        $.get('http://localhost:8080/places/' + id , data => {
+            place = data;
+            showPlace(data);
+        });
+    } else {
+        alert("There is no such a place");
+        window.location.href = "index.html?page=1";
+    }
 });
 
 $('#backToIndex').click(() => {

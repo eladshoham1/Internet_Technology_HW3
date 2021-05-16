@@ -7,9 +7,18 @@ body {
 	padding: 12px;
 }
 
-h1, h2 {
+h1 {
 	text-align: center;
-	color: teal;
+	font-size: 35px;
+	color: white;
+	text-shadow: 4px 4px 8px #003cff;
+}
+
+h2 {
+	text-align: center;
+	font-size: 32px;
+	color: white;
+	text-shadow: 4px 4px 8px #003cff;
 }
 
 .img_sites {
@@ -47,11 +56,12 @@ label {
 }
 
 input[type=submit] {
-	background-color: teal;
-	color: white;
+	background-color: #b7c576;
+	color: black;
 	border: 2px solid white;
 	border-radius: 8px;
 	padding: 12px 20px;
+	font-size: 16px;
 	text-align: center;
 	text-decoration: none;
 	cursor: pointer;
@@ -60,36 +70,39 @@ input[type=submit] {
 
 input[type=submit]:hover {
 	background-color: white;
-	color: teal;
-	border: 2px solid teal;
+	border: 2px solid #b7c576;
 }
 
 table {
-	border: 5px solid teal;
+	border: 5px solid #b7c576;
 	border-collapse: collapse;
 	border-spacing: 10px;
 	width: 100%;
-	font-size: 20px;
 	text-shadow: 2px 2px 4px #003cff;
+	background: rgba(0, 0, 0, 0.3);
 }
 
 th {
-	border: 3px solid teal;
-	padding: 12px;
+	border: 3px solid #b7c576;
+	padding: 16px;
 	vertical-align: top;
+	font-size: 20px;
 	text-align: center;
 }
 
 td {
-	border: 3px solid teal;
-	padding: 12px;
+	border: 3px solid #b7c576;
+	padding: 16px;
 	vertical-align: top;
+	font-size: 18px;
 	text-align: center;
 }
 
 .indexButton, 
 .likeButton, 
-.deleteButton {
+.deleteButton,
+.previousPageButton,
+.nextPageButton {
 	background-color: teal;
 	color: white;
 	border: 2px solid white;
@@ -110,20 +123,29 @@ td {
 }
 
 .likeButton,
-.deleteButton {
+.deleteButton,
+.nextPageButton {
 	float: right;
 }
 
-.likeButton {
-	background-color: #FFD700;
+.previousPageButton {
+	float: left;
+}
+
+.likeButton,
+.previousPageButton,
+.nextPageButton {
+	background-color: #b7c576;
 	color: white;
 	border: 2px solid white;
 }
 
-.likeButton:hover {
+.likeButton:hover,
+.previousPageButton:hover,
+.nextPageButton:hover {
 	background-color: white;
-	color: #FFD700;
-	border: 2px solid #FFD700;
+	color: #b7c576;
+	border: 2px solid #b7c576;
 }
 
 .deleteButton {
